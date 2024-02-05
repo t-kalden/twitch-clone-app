@@ -51,6 +51,7 @@ export async function POST(req: Request) {
   // Get the ID and type
   const eventType = evt.type;
 
+//   create new user and db model
   if(eventType === 'user.created') {
     await db.user.create({
         data: {
@@ -61,6 +62,7 @@ export async function POST(req: Request) {
     })
   }
 
+//   update username and db model
   if(eventType === 'user.updated') {
     // const currentUser = await db.user.findUnique({
     //     where: {
@@ -81,6 +83,7 @@ export async function POST(req: Request) {
     })
   }
 
+//   delete user from db model
   if(eventType === 'user.deleted') {
     await db.user.delete ({
         where: {
