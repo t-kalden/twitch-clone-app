@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { SignInButton, currentUser } from "@clerk/nextjs"
+import { SignInButton, UserButton, currentUser } from "@clerk/nextjs"
 import { Clapperboard } from "lucide-react"
 import Link from "next/link"
 
@@ -26,12 +26,16 @@ export const Actions = async() => {
                         asChild
                         >
                             <Link href={`/u/${user.username}`}>
-                                <Clapperboard />
-                                    <span className="pl-1">
+                                <Clapperboard className="h-5 w-5 lg:mr-2"/>
+                                    <span className="hidden lg:block">
                                         Dashboard
                                     </span>
                             </Link>
                         </Button>
+
+                        <UserButton 
+                            afterSignOutUrl="/"
+                        />
                     </div>
                 )
             }
