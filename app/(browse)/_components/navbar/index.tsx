@@ -1,3 +1,4 @@
+import { Actions } from './actions'
 import { Logo } from './logo'
 import { Search } from './search'
 export const Navbar = () => {
@@ -6,6 +7,7 @@ export const Navbar = () => {
         lg:px-4 flex justify-between items-center shadow-sm">
             <Logo />
             <Search />
+            <Actions /> 
         </nav>
     )
 }
