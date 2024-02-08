@@ -2,6 +2,7 @@ import { currentUser } from "@clerk/nextjs";
 import { db } from "@/lib/db";
 
 export const getSelf = async() => {
+    // service to find user from db
     const self = await currentUser()
 
     if(!self || !self.username) {
