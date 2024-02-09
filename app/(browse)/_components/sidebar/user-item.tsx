@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
 import { UserAvatar } from "@/components/user-avatar"
+import { LiveBadge } from "@/components/live-badge"
 
 interface UserItemProps {
     username : string
@@ -49,6 +50,13 @@ export const UserItem = ({
                     imageUrl={imageUrl} 
                     username={username}
                     isLive={isLive} />
+                    
+                    { !collapsed && (
+                            <p className="truncate">{ username }</p>
+                    )}
+                    {!collapsed && isLive && (
+                        <LiveBadge className={"ml-auto"} />
+                    )} 
                 </div>
             </Link>
         </Button>
