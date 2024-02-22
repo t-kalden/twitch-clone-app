@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { ToggleSkeleton } from "./toggle";
 import { RecommendedSkeleton } from "./recommended";
+import { useIsClient } from "usehooks-ts"; 
 
 interface WrapperProps {
     children : React.ReactNode;
@@ -12,11 +13,7 @@ interface WrapperProps {
 
 export const Wrapper = ({ children } : WrapperProps) => {
     const { collapsed } = useSidebar((state) => state)
-    const [ isClient, setIsClient ] = useState()
-
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
+    const isClient = useIsClient()
 
     if(!isClient) return (
         <aside className="fixed left-0 flex flex-col w-[70px] lg:w-60 h-full  bg-background border-r border-#2d2e35 z-50">
