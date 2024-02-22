@@ -18,7 +18,7 @@ export const getRecommended = async () => {
     if( userId ) {
         // Check if userId is available (if logged in)
         users = await db.user.findMany({
-            // if logged inm done show
+            // if logged in done show self 
             where: {
                 NOT: {
                     id: userId
@@ -29,6 +29,7 @@ export const getRecommended = async () => {
             }
         })
     } else {
+        // display all users if logged out
          users = await db.user.findMany({
             orderBy: {
                 createdAt: "desc"
