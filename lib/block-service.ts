@@ -38,7 +38,7 @@ export const blockUser = async (id: string) => {
     if(self.id === id) {
         throw new Error('Cannot block yourself')
     }
-
+    // check if user is blocked
     const otherUser = await db.user.findUnique({
         where: { id }
     })
@@ -47,6 +47,7 @@ export const blockUser = async (id: string) => {
         throw new Error('User not found')
     }
 
+    // check if other user is already blocked
     const existingBlock = await db.block.findUnique({
         where: {
             blockerId_blockedId: {
@@ -60,6 +61,7 @@ export const blockUser = async (id: string) => {
         throw new Error('Already blocked')
     }
 
+    // block other user
     const block = await db.block.create({
         data: {
             blockerId: self.id,
