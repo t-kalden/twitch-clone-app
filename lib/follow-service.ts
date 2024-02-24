@@ -1,6 +1,7 @@
 import { db } from '@/lib/db'
 import { getSelf } from './auth-service'
 
+
 export const isFollowingUser = async (id: string) => {
     try {
         const self = await getSelf()
@@ -28,6 +29,7 @@ export const isFollowingUser = async (id: string) => {
     }
 }
 
+// handles follow inthe back end
 export const followUser = async (id:string) => {
     const self = await getSelf()
 
@@ -64,5 +66,46 @@ export const followUser = async (id:string) => {
             follower: true
         }
     })
+    return follow
+}
+
+// handles unfollow inthe back end
+export const unfollowUser = async (id: string) => {
+    const self = await getSelf()
+
+    const otherUser = await db.user.findUnique({
+        where: {
+            id
+        }
+    })
+
+    if(!otherUser) {
+        throw new Error("User not found")
+    }
+
+    if(otherUser.id === self.id) {
+        throw new Error('Cannot unfollow yourself')
+    }
+
+    const existingFollow = await db.follow.findFirst({
+        where: {
+            followerId: self.id,
+            followingId: otherUser.id
+        }
+    })
+
+    if(!existingFollow) {
+        throw new Error('Not following')
+    }
+
+    const follow = await db.follow.delete({
+        where: {
+            id: existingFollow.id
+        },
+        include: {
+            following: true,
+        }
+    })
+
     return follow
 }
