@@ -74,3 +74,45 @@ export const blockUser = async (id: string) => {
 
     return block
 }
+
+export const unblockUser = async (id: string) => {
+    const self = await getSelf()
+
+    if(self.id === id) {
+        throw new Error('Cannot unblock yourself')
+    }
+
+    const otherUser = await db.user.findUnique({
+        where: { id }
+    })
+
+    if(!otherUser) {
+        throw new Error('User not found')
+    }
+
+    // check if user is blocked
+    const existingBlock = await db.block.findUnique({
+        where: {
+            blockerId_blockedId: {
+                blockerId : self.id,
+                blockedId : otherUser.id
+            }
+        }
+    })
+
+    if(!existingBlock) {
+        throw new Error('Not blocked')
+    }
+
+    // unblock user functionality
+    const unblock = await db.block.delete({
+        where: {
+            id: existingBlock.id
+        },
+        include: {
+            blocked:true
+        }
+    })
+
+    return unblock
+}
