@@ -2,7 +2,6 @@
 
 import { followUser, unfollowUser } from "@/lib/follow-service"
 import { revalidatePath } from "next/cache"
-import { Tenali_Ramakrishna } from "next/font/google"
 
 export const onFollow = async (id:string) => {
 
