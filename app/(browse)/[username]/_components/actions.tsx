@@ -8,10 +8,11 @@ import { onBlock, onUnblock } from "@/actions/block"
 
 interface ActionsProps {
     isFollowing : boolean
+    isBlocked : boolean
     userId : string
 }
 
-export const Actions = ( { isFollowing, userId } : ActionsProps ) => {
+export const Actions = ( { isFollowing, isBlocked, userId } : ActionsProps ) => {
 
     const [ isPending, startTransition ]  = useTransition()
 
