@@ -3,6 +3,7 @@ import { UrlCard } from "./_components/url-card"
 import { getStreamByUserId } from "@/lib/stream-service"
 import { getSelf } from "@/lib/auth-service"
 import { KeyCard } from "./_components/keycard"
+import { ConnectModal } from "./_components/connect-modal"
 
 const KeysPage = async () => {
     const self =  await getSelf()
@@ -17,9 +18,7 @@ const KeysPage = async () => {
                 <h1 className="text-2xl font-bold">
                     Keys &amp; URLs
                 </h1>
-                <Button variant={'primary'}>
-                    Generate
-                </Button>
+                <ConnectModal />
             </div>
 
             <div className="space-y-4">
