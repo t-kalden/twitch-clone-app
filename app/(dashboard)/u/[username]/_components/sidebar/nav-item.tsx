@@ -18,28 +18,28 @@ export const NavItem = ({icon: Icon, label, href, isActive} : NavItemProps)  => 
     const { collapsed } = useCreatorSidebar((state) => state)
 
     return (
-        <Button
-        variant={'ghost'}
-        className={cn(
-            'w-full h-12',
-            collapsed ? 'justify-center' : 'justify-start',
-            isActive && 'bg-accent'
-        )}
-        > 
-            <Link href={href}> 
-                <div className="flex item-center gap-x-4">
-                    <Icon className={cn(
-                        'h-4 w-4',
-                        collapsed ? 'mr-0' : 'mr-2'
-                    )} />
-                    {!collapsed && (
-                        <span>
-                            {label}
-                        </span>
-                    )}
-                </div>
-            </Link>
-        </Button>
+        <Link href={href}> 
+            <Button
+            variant={'ghost'}
+            className={cn(
+                'w-full h-12',
+                collapsed ? 'justify-center' : 'justify-start',
+                isActive && 'bg-accent'
+            )}
+            > 
+                    <div className="flex item-center gap-x-4">
+                        <Icon className={cn(
+                            'h-4 w-4',
+                            collapsed ? 'mr-0' : 'mr-2'
+                        )} />
+                        {!collapsed && (
+                            <span>
+                                {label}
+                            </span>
+                        )}
+                    </div>
+            </Button>
+        </Link>
     )
 }
 
