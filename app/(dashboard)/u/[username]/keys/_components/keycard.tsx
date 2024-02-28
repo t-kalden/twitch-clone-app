@@ -16,7 +16,7 @@ export const KeyCard = ({value} : KeyCardProps) => {
         <div className="rounded-xl bg-muted px-6 py-3">
             <div className="flex items-start gap-x-10">
                 <p className="font-semibold shrink-0">Stream Key</p>
-                <div className="space-y-2 w-full">
+                <div className="space-y-2 w-full flex flex-col items-end">
                     <div className="w-full flex items-center gap-x-2">
                         <Input 
                         value={ value || '' }
@@ -27,6 +27,7 @@ export const KeyCard = ({value} : KeyCardProps) => {
                         <CopyButton value={ value || '' } />
                     </div>
                     <Button 
+               
                     size={'sm'}
                     variant={'link'}
                     onClick={() => setShow(!show)}
