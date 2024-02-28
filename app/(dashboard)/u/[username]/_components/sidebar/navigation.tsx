@@ -3,6 +3,7 @@
 import { useUser } from "@clerk/nextjs"
 import { usePathname } from "next/navigation"
 import { Fullscreen, KeyRound, MessageSquare, Users } from "lucide-react"
+import { NavItem } from "./nav-item"
 
 export const Navigation = () => {
     const pathname = usePathname()
@@ -35,7 +36,13 @@ export const Navigation = () => {
             {
                 routes.map((route) => (
                     <div key={route.href}>
-                        {route.label}
+                        <NavItem 
+                            key={route.href}
+                            label={route.label}
+                            icon= {route.icon}
+                            href={route.href}
+                            isActive={pathname === route.href}
+                        />
                     </div>
                 ))
             }
