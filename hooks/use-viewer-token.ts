@@ -8,7 +8,9 @@ export const useViewerToken = (hostIdentity: string) => {
   const [token, setToken] = useState("");
   const [name, setName] = useState("");
   const [identity, setIdentity] = useState("");
-
+  
+  // console.log(hostIdentity);
+  
   useEffect(() => {
     const createToken = async () => {
       try {
@@ -16,12 +18,13 @@ export const useViewerToken = (hostIdentity: string) => {
         setToken(viewerToken);
 
         const decodedToken = jwtDecode(viewerToken) as JwtPayload & { name?: string }
-        const name = decodedToken?.name;
-        const identity = decodedToken.jti;
 
+        const identity = decodedToken.sub
+        const name = decodedToken?.name;
+        
         if (identity) {
           setIdentity(identity);
-        }
+        } 
 
         if (name) {
           setName(name);
@@ -33,8 +36,8 @@ export const useViewerToken = (hostIdentity: string) => {
     }
 
     createToken();
-  }, [hostIdentity]);
-
+  }, [ hostIdentity ]);
+  
   return {
     token,
     name,
