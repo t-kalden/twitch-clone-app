@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { Skeleton } from "../ui/skeleton"
+import { ChatInfo } from "./chatinfo"
 
 interface ChatFormProps {
     onSubmit: () => void
@@ -59,6 +60,10 @@ export const ChatForm = ({
         onSubmit={handleSubmit}
         >
             <div className="w-full">
+                <ChatInfo
+                isDelayed={isDelayed}
+                isFollowersOnly={isFollowersOnly}
+                />
                 <Input 
                 onChange={(e) => onChange(e.target.value)}
                 value={value}
