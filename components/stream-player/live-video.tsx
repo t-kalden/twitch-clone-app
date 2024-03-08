@@ -5,6 +5,7 @@ import { useRef, useState } from "react"
 import { useTracks } from "@livekit/components-react"
 import { FullscreenControl } from "./fullscreen-control"
 import { useEventListener } from "usehooks-ts"
+import { VolumeControl } from "./volume-control"
 
 interface LiveVideoProps {
     participant: Participant
@@ -49,6 +50,11 @@ export const LiveVideo = ({participant} : LiveVideoProps) => {
             />
             <div className="absolute top-0 h-full w-full opacity-0 hover:opacity-100 hover:transition-all">
                 <div className="absolute bottom-0 flex h-14 w-full items-center justify-between bg-gradient-to-r from-neutral-900 px-4">
+                    <VolumeControl 
+                    onChange={() => {}}
+                    value={0}
+                    onToggle={() => {}}
+                    />
                     <FullscreenControl 
                     isFullscreen={isFullscreen} 
                     onToggle={toggleFullscreen}
