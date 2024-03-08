@@ -5,8 +5,9 @@ import { useChat, useConnectionState, useRemoteParticipant } from "@livekit/comp
 import { ConnectionState } from "livekit-client"
 import { useEffect, useMemo, useState } from "react"
 import { useMediaQuery } from "usehooks-ts"
-import { ChatHeader } from "./chatheader"
-import { ChatForm } from "./chatform"
+import { ChatHeader } from "./chat-header"
+import { ChatForm } from "./chat-form"
+import { ChatList } from "./chat-list"
 
 interface ChatProps {
     hostName: string,
@@ -67,6 +68,10 @@ export const Chat = ({
             <ChatHeader />
             {variant === ChatVariant.CHAT && (
                 <>
+                    <ChatList 
+                    messages={reverseMessages}
+                    isHidden={isHidden}
+                    />
                     <ChatForm 
                     onSubmit={onSubmit}
                     value={value}
