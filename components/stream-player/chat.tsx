@@ -1,11 +1,12 @@
 'use client'
 
-import { useChatSidebar } from "@/store/chat-sidebar"
+import { ChatVariant, useChatSidebar } from "@/store/chat-sidebar"
 import { useChat, useConnectionState, useRemoteParticipant } from "@livekit/components-react"
 import { ConnectionState } from "livekit-client"
 import { useEffect, useMemo, useState } from "react"
 import { useMediaQuery } from "usehooks-ts"
 import { ChatHeader } from "./chatheader"
+import { ChatForm } from "./chatform"
 
 interface ChatProps {
     hostName: string,
@@ -64,6 +65,24 @@ export const Chat = ({
     return (
         <div className="flex flex-col bg-background border-l border-b pt-0 h-[calc(100vh-80px)]">
             <ChatHeader />
+            {variant === ChatVariant.CHAT && (
+                <>
+                    <ChatForm 
+                    onSubmit={onSubmit}
+                    value={value}
+                    onChange={onChange}
+                    isHidden={isHidden}
+                    isFollowersOnly={isChatFollowersOnly}
+                    isFollowing={isFollowing}
+                    isDelayed={isChatDelayed}
+                    />
+                </>
+            )} 
+            {variant === ChatVariant.COMMUNITY && (
+                <>
+                    <p>Community Mode</p>
+                </>
+            )} 
         </div>
     )
 }
