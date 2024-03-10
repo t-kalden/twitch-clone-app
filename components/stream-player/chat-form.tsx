@@ -32,7 +32,7 @@ export const ChatForm = ({
 
     const isFollowersOnlyAndNotFollowing = isFollowersOnly && !isFollowing
     const isDisabled = isHidden || isDelayBlocked || isFollowersOnlyAndNotFollowing
-
+    
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         e.stopPropagation()
@@ -54,6 +54,7 @@ export const ChatForm = ({
     {
         return null
     }
+
     return(
         <form 
         className="flex flex-col items-center gap-y-4 p-3"

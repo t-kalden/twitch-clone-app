@@ -59,8 +59,8 @@ export const Chat = ({
         setValue('')
     }
 
-    const onChange = () => {
-        setValue('')
+    const onChange = (value: string) => {
+        setValue(value)
     }
 
     return (
