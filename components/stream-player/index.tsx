@@ -8,6 +8,7 @@ import { useChatSidebar } from "@/store/chat-sidebar"
 import { cn } from "@/lib/utils"
 import { Chat, ChatSkeleton } from "./chat"
 import { ChatToggle } from "./chat-toggle"
+import { Header } from "./header"
 
 interface StreamPlayerProps { 
     user: User & { stream: Stream | null}
@@ -41,6 +42,14 @@ export const StreamPlayer = ({user, stream, isFollowing} : StreamPlayerProps) =>
                     <Video 
                     hostName={user.username}
                     hostIdentity={user.id}
+                    />
+                    <Header 
+                    hostName={user.username}
+                    hostIdentity={user.id}
+                    viewerIdentity={identity}
+                    imageUrl={user.imageUrl}
+                    isFollowing={isFollowing}
+                    name={stream.name}
                     />
                 </div>
 
