@@ -15,8 +15,10 @@ interface ActionsProps {
 export const Actions = ( { isFollowing, isBlocked, userId } : ActionsProps ) => {
 
     const [ isPending, startTransition ]  = useTransition()
+    console.log(isBlocked);
+    
 
-    // handles follow function
+      // handles follow function
     const handleFollow = () => {
         startTransition(() => {
             onFollow( userId )
@@ -28,7 +30,7 @@ export const Actions = ( { isFollowing, isBlocked, userId } : ActionsProps ) => 
     // handles unfollow function
     const handleUnfollow = () => {
         startTransition(() => {
-            onUnfollow( userId )
+            onUnfollow(userId)
                 .then((data) => toast.success(`Unfollowed ${data.following.username} :(`))
                 .catch(() => toast.error('Oops! Something went wrong :('))
         })
@@ -60,10 +62,10 @@ export const Actions = ( { isFollowing, isBlocked, userId } : ActionsProps ) => 
             </Button>
 
             <Button
-                onClick= { handleUnblock }
+                onClick= { isBlocked ? handleUnblock : handleBlock }
                 disabled= { isPending }
             >
-                Block
+                { isBlocked ? 'Unblock' : 'Block'}
             </Button>
         </>
     )

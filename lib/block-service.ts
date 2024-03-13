@@ -4,7 +4,8 @@ import { getSelf } from "@/lib/auth-service";
 export const isBlockedByUser = async (id: string) => {
     try {
         const self = await getSelf()
-
+        // if(self) return self
+        
         const otherUser = await db.user.findUnique({
             where: { id }
         })
@@ -20,12 +21,13 @@ export const isBlockedByUser = async (id: string) => {
         const existingBlock = await db.block.findUnique({
             where: {
                 blockerId_blockedId: {
-                    blockerId: otherUser.id,
-                    blockedId: self.id
+                    blockerId: self.id,
+                    blockedId: otherUser.id
                 }
             }
         })
-
+        console.log(!!existingBlock);
+        
         return !!existingBlock
     } catch {
         return false
