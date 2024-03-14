@@ -74,11 +74,13 @@ export default function InfoModal({initialName, initialThumbnailUrl}: InfoModalP
                 </Button>
             </DialogTrigger>
             <DialogContent>
-                <DialogHeader>
+                <DialogTitle>
                     <DialogHeader>
-                        Edit stream info
+                        <DialogHeader>
+                            Edit stream info
+                        </DialogHeader>
                     </DialogHeader>
-                </DialogHeader>
+                </DialogTitle>
                 <form onSubmit={onSubmit} className="space-y-14">
                     <div className="space-y-2">
                         <Label>
