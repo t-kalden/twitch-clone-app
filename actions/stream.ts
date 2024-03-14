@@ -15,6 +15,7 @@ export const updateStream = async (values: Partial<Stream>) => {
         if(!selfStream) { throw new Error('Stream not found.')}
 
         const validData = {
+            thumbnailUrl: values.thumbnailUrl,
             name: values.name,
             isChatEnabled: values.isChatEnabled,
             isChatDelayed: values.isChatDelayed,
@@ -35,7 +36,9 @@ export const updateStream = async (values: Partial<Stream>) => {
         revalidatePath(`/${self.username}`)
 
         return stream
-    } catch {
+    } catch (e){
+        console.log(e);
+        
         throw new Error("Internal Error.")
     }
 }
