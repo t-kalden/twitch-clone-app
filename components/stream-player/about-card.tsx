@@ -1,5 +1,6 @@
 "use client"
 
+import { BioModal } from "./bio-modal"
 import { VerifiedMark } from "./verified-mark"
 
 interface AboutCardProps {
@@ -32,7 +33,9 @@ export default function AboutCard({
                         <VerifiedMark />
                     </div>
                     { isHost && (
-                        <p>TODO: Edit</p>
+                        <BioModal 
+                        initialValue={bio}
+                        />
                     )}
                 </div>
                 <div className="text-sm text-muted-foreground">
