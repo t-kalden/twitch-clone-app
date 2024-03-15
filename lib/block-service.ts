@@ -8,8 +8,9 @@ export const isBlockedByUser = async (id: string) => {
         
         const otherUser = await db.user.findUnique({
             where: { id }
+            
         })
-
+        
         if(!otherUser) {
             throw new Error('User not found')
         }
@@ -21,12 +22,11 @@ export const isBlockedByUser = async (id: string) => {
         const existingBlock = await db.block.findUnique({
             where: {
                 blockerId_blockedId: {
-                    blockerId: self.id,
-                    blockedId: otherUser.id
-                }
-            }
-        })
-        console.log(!!existingBlock);
+                    blockerId: otherUser.id,
+                    blockedId: self.id,
+                },
+            },
+        });
         
         return !!existingBlock
     } catch {
