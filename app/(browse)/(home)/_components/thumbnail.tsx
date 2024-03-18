@@ -1,5 +1,6 @@
-import { UserAvatar } from "@/components/user-avatar"
 import Image from "next/image"
+import { UserAvatar } from "@/components/user-avatar"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface ThumbnailProps {
     src: string | null
@@ -40,3 +41,11 @@ const Thumbnail = ({src, fallback, isLive,username}: ThumbnailProps) => {
 }
 
 export default Thumbnail
+
+export const ThumbnailSkeleton = () => {
+    return (
+        <div className="group aspect-video relative rounded-xl cursor-pointer">
+            <Skeleton className="h-full w-full" />
+        </div>
+    )
+}
