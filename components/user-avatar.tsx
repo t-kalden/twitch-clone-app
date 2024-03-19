@@ -35,7 +35,7 @@ export const UserAvatar = ({
     size
 } : UserAvatarProps) => {
     const canShowBadge = showBadge && isLive
-
+    
     return(
         <div className='relative'>
             <Avatar className={

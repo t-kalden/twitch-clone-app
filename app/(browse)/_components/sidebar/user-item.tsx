@@ -47,9 +47,10 @@ export const UserItem = ({
                     )
                 }>
                     <UserAvatar 
-                    imageUrl={imageUrl} 
-                    username={username}
-                    isLive={isLive} />
+                        imageUrl={imageUrl}
+                        username={username}
+                        isLive={isLive} 
+                        showBadge={true} />
                     
                     { !collapsed && (
                             <p className="truncate">{ username }</p>
