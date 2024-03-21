@@ -118,3 +118,18 @@ export const unblockUser = async (id: string) => {
 
     return unblock
 }
+
+export const getBlockedUsers = async () => {
+    const self = getSelf()
+
+    const blockedUsers = await db.block.findMany({
+        where: {
+            blockerId: (await self).id
+        }, 
+        include: {
+            blocked: true
+        }
+    })
+
+    return blockedUsers
+}
