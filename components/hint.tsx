@@ -6,10 +6,10 @@ import {
     from '@/components/ui/tooltip'
 
 interface HintProps {
-    label : string
+    label?: string
     children?: React.ReactNode
-    asChild : boolean
-    side : "top" | "bottom" | "left" | "right"
+    asChild?: boolean
+    side?: "top" | "bottom" | "left" | "right"
     align?: "start" | "center" | "end" 
 }
 
