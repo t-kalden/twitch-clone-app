@@ -40,7 +40,7 @@ const Thumbnail = ({src, fallback, isLive,username}: ThumbnailProps) => {
             {
                 isLive && src &&(
                     <div className="absolute top-2 left-2 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform">
-                        <LiveBadge className={""} />
+                        <LiveBadge />
                     </div>
                 )
             }
