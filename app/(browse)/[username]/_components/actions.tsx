@@ -15,8 +15,6 @@ interface ActionsProps {
 export const Actions = ( { isFollowing, isBlocked, userId } : ActionsProps ) => {
 
     const [ isPending, startTransition ]  = useTransition()
-    console.log(isBlocked);
-    
 
       // handles follow function
     const handleFollow = () => {
@@ -39,7 +37,7 @@ export const Actions = ( { isFollowing, isBlocked, userId } : ActionsProps ) => 
     const handleBlock = () => {
         startTransition(() => {
             onBlock(userId) 
-                .then((data) => toast.success(`${data.blocked.username} has been blocked. They can no longer access your page.`))
+                .then((data) => toast.success(`${data?.blocked.username} has been blocked. They can no longer access your page.`))
                 .catch(() => toast.error('Failed to block user.'))
         })
     }
