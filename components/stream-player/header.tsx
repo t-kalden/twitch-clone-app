@@ -41,7 +41,7 @@ export const Header = ({
                 <UserAvatar 
                 imageUrl={imageUrl}
                 username={hostName}
-                size={'lg'}
+                size={'md'}
                 isLive={isLive}
                 showBadge
                 />
