@@ -7,6 +7,8 @@ import {
   IngressVideoEncodingPreset,
   RoomServiceClient,
   type CreateIngressOptions,
+  IngressVideoOptions,
+  IngressAudioOptions,
 } from "livekit-server-sdk";
 
 import { TrackSource } from "livekit-server-sdk/dist/proto/livekit_models_pb";
@@ -46,25 +48,34 @@ export const createIngress = async (ingressType: IngressInput) => {
 
   await resetIngresses(self.id);
 
+  
   const options: CreateIngressOptions = {
     name: self.username,
     roomName: self.id,
     participantName: self.username,
     participantIdentity: self.id,
+
+    video: new IngressVideoOptions({
+      source: TrackSource.CAMERA,
+      encodingOptions: {
+        case: "preset",
+        value: IngressVideoEncodingPreset.H264_1080P_30FPS_1_LAYER,
+      }
+    }),
+  
+    audio: new IngressAudioOptions ({
+      source: TrackSource.MICROPHONE,
+      encodingOptions: {
+        case: "preset",
+        value: IngressAudioEncodingPreset.OPUS_STEREO_96KBPS,
+      }
+    }),
   };
 
   if (ingressType === IngressInput.WHIP_INPUT) {
-    options.bypassTranscoding = true;
-  } else {
-    options.video = {
-      source: TrackSource.CAMERA,
-      preset: IngressVideoEncodingPreset.H264_1080P_30FPS_3_LAYERS,
-    };
-    options.audio = {
-      source: TrackSource.MICROPHONE,
-      preset: IngressAudioEncodingPreset.OPUS_STEREO_96KBPS
-    };
-  };
+    options.bypassTranscoding = false;
+  }
+
 
   const ingress = await ingressClient.createIngress(
     ingressType,
@@ -76,7 +87,9 @@ export const createIngress = async (ingressType: IngressInput) => {
   }
 
   await db.stream.update({
-    where: { userId: self.id },
+    where: { 
+      userId: self.id 
+    },
     data: {
       ingressId: ingress.ingressId,
       serverUrl: ingress.url,
@@ -85,5 +98,5 @@ export const createIngress = async (ingressType: IngressInput) => {
   });
 
   revalidatePath(`/u/${self.username}/keys`);
-  return ingress;
+  return JSON.stringify(ingress);
 };
