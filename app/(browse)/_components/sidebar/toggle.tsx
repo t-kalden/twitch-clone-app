@@ -20,7 +20,8 @@ export const Toggle = () => {
                         <Hint 
                         label={label}
                         side="right"
-                        asChild>
+                        asChild          
+                        >
                             <Button 
                             variant={'ghost'}
                             className="h-auto p-2"
@@ -39,9 +40,9 @@ export const Toggle = () => {
                     <div className="p-3 pl-6 mb-2 flex items-center w-full">
                         <p className="font-semibold text-primary">For you</p>
                         <Hint 
-                        label={label}
-                        side="right"
-                        asChild>
+                            label={label}
+                            side="right"
+                            asChild >
                             <Button 
                             className="h-auto p-2 ml-auto"
                             variant={'ghost'}

@@ -23,8 +23,8 @@ const avatarSizes = cva(
 interface UserAvatarProps extends VariantProps<typeof avatarSizes>{
     username : string
     imageUrl : string
-    isLive : boolean
-    showBadge : boolean | null
+    isLive?: boolean
+    showBadge?: boolean
 }
 
 export const UserAvatar = ({ 
@@ -54,7 +54,7 @@ export const UserAvatar = ({
             {
                     canShowBadge && (
                         <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
-                            <LiveBadge />
+                            <LiveBadge className={''} />
                         </div>
                     )
                 }
