@@ -11,7 +11,7 @@ import { Button } from "../ui/button"
 interface CommunityItemProps {
     hostName: string
     viewerName: string
-    participantName: string
+    participantName?: string
     participantIdentity: string
 }
 
