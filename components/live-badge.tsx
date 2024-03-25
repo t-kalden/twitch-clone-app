@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 interface LiveBadgeProps {
-    className : string
+    className?: string
 }
 
 export const LiveBadge = ({ className } : LiveBadgeProps) => {
