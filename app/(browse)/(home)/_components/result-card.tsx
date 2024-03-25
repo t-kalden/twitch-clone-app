@@ -25,10 +25,10 @@ export const ResultCard = ({data} : ResultCardProps) => {
                 />
                 <div className="flex gap-x-3">
                     <UserAvatar 
-                    username={data.user.username}
-                    imageUrl={data.user.imageUrl}
-                    isLive={data.isLive}
-                    />
+                        username={data.user.username}
+                        imageUrl={data.user.imageUrl}
+                        isLive={data.isLive} 
+                        showBadge                  />
                     <div className="flex flex-col text-sm overflow-hidden">
                         <p className="truncate font-semibold hover:text-blue-500">
                             {data.name}

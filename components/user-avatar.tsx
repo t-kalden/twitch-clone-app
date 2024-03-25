@@ -24,7 +24,7 @@ interface UserAvatarProps extends VariantProps<typeof avatarSizes>{
     username : string
     imageUrl : string
     isLive : boolean
-    showBadge : boolean
+    showBadge : boolean | null
 }
 
 export const UserAvatar = ({ 
